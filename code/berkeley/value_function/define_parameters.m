@@ -2,10 +2,10 @@ function p = define_parameters()
 
 
 %% GRID PARAMETERS
-p.amin = -1;
+p.amin = 0;
 p.amax = 10; 
 
-p.l = 8;
+p.l = 6;
 
 
 %% TUNING PARAMETERS
@@ -24,7 +24,7 @@ p.u = @(x) 1/(1 - p.gamma) * x.^(1-p.gamma);
 p.u1 = @(x) x.^(-p.gamma);
 
 % Exogenous constant interest rate:
-p.r = 0.015;
+p.r = 0.018;
 
 % Earnings process:
 p.zz = [0.8, 1.2];
