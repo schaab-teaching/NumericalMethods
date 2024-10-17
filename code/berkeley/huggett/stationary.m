@@ -1,4 +1,4 @@
-function S = stationary(r, G, p)
+function [B, ss] = stationary(r, G, p)
 
 % pseudo-code
 % given r, run VFI to get c / s as well as generator A
@@ -17,7 +17,7 @@ V0 = p.u(c0) / p.rho;
 left_bound  = p.u1(G.income(G.a == p.amin, :));
 right_bound = p.u1(G.income(G.a == p.amax, :));
 for j = 1:2
-    BC{1}.left.type = '0'; BC{1}.right.type = 'VNF';
+    BC{1}.left.type = 'VNB'; BC{1}.right.type = 'VNF';
     BC{1}.left.f  = @(points) left_bound(j) * ones(size(points, 1), 1);
     BC{1}.right.f = @(points) right_bound(j) * ones(size(points, 1), 1);
     G = gen_FD(G, BC, num2str(j));
@@ -31,5 +31,11 @@ end
 g = KF(A, G, p);
 
 
+%% MARKET CLEARING
+B = sum(sum(G.a .* g)) * G.da;
+
+
+%% OUTPUT
+ss.c = c; ss.V = V; ss.A = A; ss.g = g; ss.B = B; ss.s = s;
 
 end

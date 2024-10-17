@@ -19,7 +19,7 @@ for n = 1:p.maxitKF
     dist = max(max(abs(g_change)));
     if dist < p.tolKF; break; end
 
-    if mod(n, 1) == 0, fprintf('KFE: %.i    Remaining Gap: %.2d\n', n, dist); end
+    % if mod(n, 1) == 0, fprintf('KFE: %.i    Remaining Gap: %.2d\n', n, dist); end
 
 end
     

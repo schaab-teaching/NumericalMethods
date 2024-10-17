@@ -34,4 +34,15 @@ r0 = p.r;
 S0 = stationary(r0, G, p);
 
 % newton-solve over stationary(r0)
+f = @(x) stationary(x, G, p);
 
+options = optimset('Display', 'iter');
+r = fsolve(f, r0, options);
+
+% Rerun stationary with correct interest rate:
+[~, ss] = stationary(r, G, p);
+
+
+%% FIGURES
+figure; plot(G.a, ss.g);
+figure; plot(G.a, ss.s);

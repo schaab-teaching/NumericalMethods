@@ -52,7 +52,7 @@ for iter = 1:p.maxit
     dist = max(max(abs(V_change)));
     if dist < p.tol; break; end
 
-    if mod(iter, 1) == 0, fprintf('VFI: %.i    Remaining Gap: %.2d\n', iter, dist); end
+    % if mod(iter, 1) == 0, fprintf('VFI: %.i    Remaining Gap: %.2d\n', iter, dist); end
 
 end
 
